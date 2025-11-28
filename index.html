@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portafolio - Roni Saavedra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Fuente Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-card: rgba(15, 23, 42, 0.9);
+      --accent: #8b5cf6;
+      --accent-soft: #22c55e;
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --radius-xl: 1.5rem;
+      --shadow-3d: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --border-glass: rgba(148, 163, 184, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.18) 0, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.12) 0, transparent 35%),
+        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.2) 0, transparent 40%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-sphere {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: conic-gradient(from 180deg, #8b5cf6, #22c55e, #0ea5e9, #8b5cf6);
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-sphere::after {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.8;
+    }
+
+    .logo span {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--text-soft);
+      margin-left: 1rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-soft));
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-text small {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      color: var(--accent-soft);
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(to right, #a855f7, #22c55e, #0ea5e9);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      max-width: 36rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.4rem 0 1.8rem;
+    }
+
+    .badge {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.5));
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      backdrop-filter: blur(14px);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #22c55e, transparent);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      will-change: transform;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #22c55e);
+      color: white;
+      box-shadow: var(--shadow-3d);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.2), rgba(15, 23, 42, 0.95));
+      transform: translateY(-1px);
+    }
+
+    /* HERO 3D CARD */
+
+    .hero-3d {
+      perspective: 1100px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-3d-card {
+      width: 100%;
+      max-width: 360px;
+      border-radius: var(--radius-xl);
+      padding: 1.2rem;
+      background: radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.22), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.18), transparent 50%),
+                  rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--border-glass);
+      box-shadow: var(--shadow-3d);
+      transform-style: preserve-3d;
+      transform: rotateX(12deg) rotateY(-18deg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-3d-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0, rgba(244, 244, 245, 0.16), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(129, 140, 248, 0.2), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-3d-inner {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .hero-3d-title {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+    }
+
+    .hero-3d-sub {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-3d-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      margin-bottom: 1rem;
+    }
+
+    .hero-3d-mainimage {
+      border-radius: 1.1rem;
+      width: 100%;
+      overflow: hidden;
+      transform: translateZ(35px);
+      margin-bottom: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-3d-mainimage img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+
+    .hero-3d-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--text-soft);
+    }
+
+    .hero-3d-pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section p.section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 1.6rem;
+    }
+
+    /* SOBRE MÍ */
+
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 0.8rem;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .stat-card {
+      padding: 0.8rem;
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.8rem;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.1rem;
+    }
+
+    /* PROYECTOS 3D */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 1rem;
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.28), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.22), transparent 55%),
+                  rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--border-glass);
+      box-shadow: var(--shadow-3d);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transform: translateY(0) rotateX(0) rotateY(0);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px) rotateX(6deg) rotateY(-8deg);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .project-image {
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.03);
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .project-pill {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.7rem;
+    }
+
+    .project-links a {
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: #a5b4fc;
+    }
+
+    /* CONTACTO */
+
+    .contact-card {
+      border-radius: var(--radius-xl);
+      padding: 1.2rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .contact-info span {
+      display: block;
+      color: var(--text-soft);
+      font-size: 0.8rem;
+    }
+
+    .contact-info strong {
+      font-size: 0.95rem;
+    }
+
+    .contact-links a {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: #a5b4fc;
+      margin-left: 1rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-3d {
+        order: -1;
+      }
+
+      .about {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-3d-card {
+        max-width: 100%;
+      }
+
+      .contact-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="logo">
+        <div class="logo-sphere"></div>
+        <span>Roni Saavedra.dev</span>
+      </div>
+      <nav>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <small>Desarrollador Web & Backend</small>
+        <h1>
+          Hola, soy <span>Roni</span>.<br />
+          Construyo experiencias web modernas.
+        </h1>
+        <p>
+          Desarrollador en formación, apasionado por <strong>PHP, Laravel, Docker y bases de datos</strong>.
+          Me gusta crear soluciones limpias, bien estructuradas y pensadas para el usuario.
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Disponible para proyectos
+          </div>
+          <div class="badge">PHP · Laravel · MySQL</div>
+          <div class="badge">Docker · Git · Linux</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn btn-primary">
+            Ver proyectos
+          </a>
+          <a href="#" class="btn btn-ghost">
+            Descargar CV (PDF)
+          </a>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3D “preview” de un proyecto -->
+      <div class="hero-3d">
+        <div class="hero-3d-card">
+          <div class="hero-3d-glow"></div>
+          <div class="hero-3d-inner">
+            <div class="hero-3d-chip">
+              <span class="badge-dot"></span>
+              Proyecto destacado · Laravel
+            </div>
+            <h3 class="hero-3d-title">Sistema de Inventario</h3>
+            <p class="hero-3d-sub">
+              Panel moderno con gráficos, tarjetas 3D y reportes automáticos.
+            </p>
+            <div class="hero-3d-mainimage">
+              <!-- Cambia esta imagen por una captura real de tu proyecto -->
+              <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800"
+                   alt="Preview 3D de proyecto" />
+            </div>
+            <div class="hero-3d-footer">
+              <div>
+                Último despliegue<br />
+                <strong>Docker + VPS</strong>
+              </div>
+              <div class="hero-3d-pill">Laravel · React · API</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <p class="section-subtitle">Un poco de contexto de quién soy y qué puedo aportar al equipo.</p>
+
+      <div class="about">
+        <div class="about-text">
+          <p>
+            Soy <strong>Roni</strong>, estudiante de <strong>Ingeniería en Informática</strong> y desarrollador
+            backend enfocado en construir aplicaciones web mantenibles, seguras y bien documentadas.
+          </p>
+          <p>
+            Me siento cómodo trabajando con <strong>PHP/Laravel, MySQL, Docker y Linux</strong>. También tengo
+            experiencia haciendo documentación técnica, diagramas y pruebas automatizadas.
+          </p>
+          <p>
+            Busco oportunidades para seguir creciendo en proyectos reales, aportando tanto en
+            <strong>backend</strong> como en integración con el <strong>frontend</strong>.
+          </p>
+
+          <div class="about-tags">
+            <span class="tag">Backend · Laravel .django</span>
+            <span class="tag">APIs REST</span>
+            <span class="tag">MySQL / MariaDB</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Git / GitHub</span>
+          </div>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-card">
+            <strong>+X</strong>
+            <span>Proyectos académicos y personales documentados.</span>
+          </div>
+          <div class="stat-card">
+            <strong>+Y</strong>
+            <span>Meses de experiencia en prácticas y trabajo con sistemas reales.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Stack</strong>
+            <span>PHP · Laravel · Python · JS.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Focus</strong>
+            <span>Calidad, buenas prácticas y claridad en el código.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+      <h2>Proyectos 3D / Fullstack</h2>
+      <p class="section-subtitle">
+        Selección de proyectos que muestran mi experiencia con Laravel, bases de datos, Docker y frontends modernos.
+      </p>
+
+      <div class="projects-grid">
+        <!-- PROYECTO 1 -->
+        <article class="project-card">
+          <div class="project-image">
+            <!-- Cambia por captura real de tu proyecto -->
+            <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Proyecto Punto de Venta" />
+          </div>
+          <h3 class="project-title">Punto de Venta & Inventario</h3>
+          <p class="project-desc">
+            Sistema de venta con control de inventario, reportes descargables y panel con tarjetas en estilo 3D.
+          </p>
+          <div class="project-meta">
+            <div class="project-tech">
+              <span class="project-pill">Laravel</span>
+              <span class="project-pill">MySQL</span>
+              <span class="project-pill">Docker</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank">Ver código</a> ·
+              <a href="#" target="_blank">Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 2 -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.pexels.com/photos/5716023/pexels-photo-5716023.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Proyecto E-commerce" />
+          </div>
+          <h3 class="project-title">E-commerce Laravel</h3>
+          <p class="project-desc">
+            Tienda en línea con autenticación, carrito, panel de administración y diseño moderno con efectos 3D.
+          </p>
+          <div class="project-meta">
+            <div class="project-tech">
+              <span class="project-pill">Laravel</span>
+              <span class="project-pill">Blade</span>
+              <span class="project-pill">Stripe / Pagos</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank">Ver código</a> ·
+              <a href="#" target="_blank">Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 3 -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Dashboard Analítico" />
+          </div>
+          <h3 class="project-title">Dashboard Analítico</h3>
+          <p class="project-desc">
+            Dashboard para visualizar KPIs, métricas de uso y alertas, integrando backend Laravel con front moderno.
+          </p>
+          <div class="project-meta">
+            <div class="project-tech">
+              <span class="project-pill">Laravel API</span>
+              <span class="project-pill">Chart libs</span>
+              <span class="project-pill">Docker</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank">Ver código</a> ·
+              <a href="#" target="_blank">Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p class="section-subtitle">
+        ¿Te interesa mi perfil o quieres que trabajemos en un proyecto? Aquí te dejo mis datos.
+      </p>
+
+      <div class="contact-card">
+        <div class="contact-info">
+          <span>Envíame un correo o contáctame por redes.</span>
+          <strong>tunombre@correo.com</strong>
+        </div>
+        <div class="contact-links">
+          <a href="#" target="_blank">GitHub</a>
+          <a href="#" target="_blank">LinkedIn</a>
+          <a href="#" target="_blank">Portafolio PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Tu Nombre. Construido con cariño usando HTML, CSS y un poco de 3D.
+    </footer>
+  </div>
+
+  <script>
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
