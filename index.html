@@ -4,18 +4,20 @@
   <meta charset="UTF-8" />
   <title>Portafolio - Roni Saavedra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Fuente Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #050816;
-      --bg-card: rgba(15, 23, 42, 0.9);
-      --accent: #8b5cf6;
-      --accent-soft: #22c55e;
+      --bg: #020617;
+      --bg-soft: #020617;
+      --bg-card: rgba(15, 23, 42, 0.95);
+      --accent: #22d3ee;
+      --accent-2: #a855f7;
+      --accent-3: #22c55e;
       --text: #e5e7eb;
       --text-soft: #9ca3af;
       --radius-xl: 1.5rem;
-      --shadow-3d: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --shadow-3d: 0 25px 60px rgba(0, 0, 0, 0.85);
       --border-glass: rgba(148, 163, 184, 0.3);
     }
 
@@ -28,13 +30,47 @@
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background:
-        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.18) 0, transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.12) 0, transparent 35%),
-        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.2) 0, transparent 40%),
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.18), transparent 55%),
+        radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.12), transparent 55%),
         var(--bg);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grid / scanlines de fondo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)),
+        repeating-linear-gradient(
+          to right,
+          rgba(15, 23, 42, 0.4) 0,
+          rgba(15, 23, 42, 0.4) 1px,
+          transparent 1px,
+          transparent 40px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.5) 0,
+          rgba(15, 23, 42, 0.5) 1px,
+          transparent 1px,
+          transparent 40px
+        );
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: -1;
+      animation: bg-drift 18s linear infinite;
+    }
+
+    @keyframes bg-drift {
+      0% { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-40px,-40px,0); }
     }
 
     .wrapper {
@@ -48,24 +84,26 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.8rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
     .logo-sphere {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
-      background: conic-gradient(from 180deg, #8b5cf6, #22c55e, #0ea5e9, #8b5cf6);
-      box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background:
+        radial-gradient(circle at 20% 20%, #e0f2fe, transparent 60%),
+        conic-gradient(from 210deg, #22d3ee, #a855f7, #22c55e, #22d3ee);
+      box-shadow:
+        0 0 20px rgba(34, 211, 238, 0.9),
+        0 0 40px rgba(88, 28, 135, 0.7);
       position: relative;
       overflow: hidden;
     }
@@ -75,33 +113,37 @@
       position: absolute;
       inset: 18%;
       border-radius: inherit;
-      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 60%);
+      background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.9), transparent 65%);
       mix-blend-mode: screen;
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     .logo span {
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
     }
 
     nav a {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-decoration: none;
       color: var(--text-soft);
-      margin-left: 1rem;
+      margin-left: 1.4rem;
       position: relative;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
     nav a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -3px;
+      bottom: -6px;
       width: 0;
       height: 2px;
-      background: linear-gradient(to right, var(--accent), var(--accent-soft));
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
       transition: width 0.25s ease;
     }
 
@@ -113,54 +155,98 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 2.4rem;
       align-items: center;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .hero-text small {
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       font-size: 0.75rem;
-      color: var(--accent-soft);
+      color: #4ade80;
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
     .hero-text h1 {
-      font-size: clamp(2.1rem, 4vw, 3rem);
-      margin-top: 0.5rem;
-      margin-bottom: 0.75rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-top: 0.7rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.1;
     }
 
-    .hero-text h1 span {
-      background: linear-gradient(to right, #a855f7, #22c55e, #0ea5e9);
-      -webkit-background-clip: text;
-      color: transparent;
+    .hero-text h1 span.glitch {
+      position: relative;
+      display: inline-block;
+      color: var(--accent);
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.7;
+    }
+
+    .glitch::before {
+      color: #f97316;
+      transform: translate3d(-1px, 1px, 0);
+      animation: glitch-1 2.5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      color: #22c55e;
+      transform: translate3d(1px, -1px, 0);
+      animation: glitch-2 2.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-1 {
+      0% { clip-path: inset(0 0 80% 0); }
+      50% { clip-path: inset(20% 0 40% 0); }
+      100% { clip-path: inset(60% 0 0 0); }
+    }
+
+    @keyframes glitch-2 {
+      0% { clip-path: inset(60% 0 0 0); }
+      50% { clip-path: inset(10% 0 60% 0); }
+      100% { clip-path: inset(0 0 80% 0); }
     }
 
     .hero-text p {
       color: var(--text-soft);
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       max-width: 36rem;
+    }
+
+    .hero-text p strong {
+      color: #e5e7eb;
+      font-weight: 600;
     }
 
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin: 1.4rem 0 1.8rem;
+      margin: 1.6rem 0 2rem;
     }
 
     .badge {
-      padding: 0.35rem 0.9rem;
+      padding: 0.38rem 1rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.5));
-      font-size: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.2), transparent 60%),
+                  rgba(15, 23, 42, 0.9);
+      font-size: 0.78rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      backdrop-filter: blur(14px);
+      gap: 0.4rem;
+      backdrop-filter: blur(16px);
     }
 
     .badge-dot {
@@ -168,18 +254,18 @@
       height: 7px;
       border-radius: 999px;
       background: radial-gradient(circle, #22c55e, transparent);
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.9rem;
+      gap: 1rem;
     }
 
     .btn {
       border-radius: 999px;
-      padding: 0.7rem 1.4rem;
+      padding: 0.75rem 1.6rem;
       border: 1px solid transparent;
       font-size: 0.9rem;
       cursor: pointer;
@@ -187,63 +273,85 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-      will-change: transform;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+      will-change: transform, box-shadow;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6, #22c55e);
+      background: radial-gradient(circle at 0 0, #22d3ee, transparent 60%),
+                  linear-gradient(120deg, #22d3ee, #a855f7);
       color: white;
-      box-shadow: var(--shadow-3d);
+      box-shadow:
+        0 0 18px rgba(34, 211, 238, 0.6),
+        var(--shadow-3d);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.8);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 0 28px rgba(168, 85, 247, 0.8),
+        0 30px 70px rgba(0, 0, 0, 0.9);
     }
 
     .btn-ghost {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.9);
       color: var(--text);
-      border-color: rgba(148, 163, 184, 0.4);
+      border-color: rgba(148, 163, 184, 0.5);
     }
 
     .btn-ghost:hover {
       border-color: var(--accent);
-      background: radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.2), rgba(15, 23, 42, 0.95));
+      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.2), rgba(15, 23, 42, 0.98));
       transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
     }
 
-    /* HERO 3D CARD */
+    /* Tarjeta 3D */
 
     .hero-3d {
-      perspective: 1100px;
+      perspective: 1200px;
       display: flex;
       justify-content: center;
     }
 
     .hero-3d-card {
       width: 100%;
-      max-width: 360px;
-      border-radius: var(--radius-xl);
+      max-width: 380px;
+      border-radius: 1.7rem;
       padding: 1.2rem;
-      background: radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.22), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.18), transparent 50%),
-                  rgba(15, 23, 42, 0.96);
-      border: 1px solid var(--border-glass);
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.25), transparent 55%),
+        rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.5);
       box-shadow: var(--shadow-3d);
       transform-style: preserve-3d;
-      transform: rotateX(12deg) rotateY(-18deg);
+      transform: rotateX(14deg) rotateY(-18deg);
       position: relative;
       overflow: hidden;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    .hero-3d-card:hover {
+      transform: rotateX(10deg) rotateY(-10deg) translateY(-4px);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.95),
+        0 0 30px rgba(34, 211, 238, 0.45);
     }
 
     .hero-3d-glow {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 0, rgba(244, 244, 245, 0.16), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(129, 140, 248, 0.2), transparent 55%);
+        radial-gradient(circle at 20% 0, rgba(244, 244, 245, 0.2), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(129, 140, 248, 0.35), transparent 55%);
       mix-blend-mode: screen;
       pointer-events: none;
     }
@@ -253,35 +361,36 @@
       transform-style: preserve-3d;
     }
 
-    .hero-3d-title {
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-      opacity: 0.9;
-    }
-
-    .hero-3d-sub {
-      font-size: 0.75rem;
-      color: var(--text-soft);
-      margin-bottom: 0.75rem;
-    }
-
     .hero-3d-chip {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      font-size: 0.7rem;
-      padding: 0.3rem 0.7rem;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(148, 163, 184, 0.5);
       margin-bottom: 1rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+    }
+
+    .hero-3d-title {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+
+    .hero-3d-sub {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 0.9rem;
     }
 
     .hero-3d-mainimage {
-      border-radius: 1.1rem;
+      border-radius: 1.2rem;
       width: 100%;
       overflow: hidden;
-      transform: translateZ(35px);
+      transform: translateZ(40px);
       margin-bottom: 1rem;
       border: 1px solid rgba(148, 163, 184, 0.35);
     }
@@ -297,32 +406,35 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       color: var(--text-soft);
     }
 
     .hero-3d-pill {
-      padding: 0.3rem 0.7rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.72rem;
     }
 
-    /* SECTIONS */
+    /* SECCIONES GENERALES */
 
     section {
-      margin-bottom: 3rem;
+      margin-bottom: 3.2rem;
     }
 
     section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
     section p.section-subtitle {
       font-size: 0.9rem;
       color: var(--text-soft);
       margin-bottom: 1.6rem;
+      max-width: 36rem;
     }
 
     /* SOBRE MÍ */
@@ -330,7 +442,7 @@
     .about {
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
-      gap: 1.8rem;
+      gap: 1.9rem;
       align-items: start;
     }
 
@@ -343,72 +455,78 @@
     .about-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.3rem;
+      gap: 0.55rem;
+      margin-top: 0.4rem;
     }
 
     .tag {
       font-size: 0.75rem;
-      padding: 0.3rem 0.7rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
     }
 
     .about-stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
+      gap: 1rem;
     }
 
     .stat-card {
-      padding: 0.8rem;
-      border-radius: 1rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.85rem;
+      border-radius: 1.1rem;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(4, 7, 20, 0.96));
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      box-shadow: 0 18px 40px rgba(2, 6, 23, 0.95);
       font-size: 0.8rem;
     }
 
     .stat-card strong {
       display: block;
-      font-size: 1.2rem;
-      margin-bottom: 0.1rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.15rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
-    /* PROYECTOS 3D */
+    /* PROYECTOS */
 
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
+      gap: 1.6rem;
     }
 
     .project-card {
       position: relative;
       border-radius: var(--radius-xl);
       padding: 1rem;
-      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.28), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.22), transparent 55%),
-                  rgba(15, 23, 42, 0.96);
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.25), transparent 55%),
+        rgba(15, 23, 42, 0.98);
       border: 1px solid var(--border-glass);
       box-shadow: var(--shadow-3d);
       overflow: hidden;
       transform-style: preserve-3d;
       transform: translateY(0) rotateX(0) rotateY(0);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
       cursor: pointer;
     }
 
     .project-card:hover {
-      transform: translateY(-8px) rotateX(6deg) rotateY(-8deg);
-      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.85);
+      transform: translateY(-10px) rotateX(6deg) rotateY(-6deg);
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(34, 211, 238, 0.4);
+      border-color: rgba(129, 140, 248, 0.9);
     }
 
     .project-image {
-      border-radius: 1rem;
+      border-radius: 1.1rem;
       overflow: hidden;
       margin-bottom: 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      border: 1px solid rgba(148, 163, 184, 0.45);
     }
 
     .project-image img {
@@ -417,17 +535,23 @@
       object-fit: cover;
       display: block;
       transform: scale(1.03);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.07);
     }
 
     .project-title {
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       margin-bottom: 0.25rem;
+      font-weight: 600;
     }
 
     .project-desc {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-soft);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.7rem;
     }
 
     .project-meta {
@@ -441,18 +565,19 @@
     .project-tech {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.3rem;
+      gap: 0.35rem;
     }
 
     .project-pill {
-      padding: 0.2rem 0.6rem;
+      padding: 0.2rem 0.65rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      border: 1px solid rgba(148, 163, 184, 0.5);
       font-size: 0.7rem;
+      background: rgba(15, 23, 42, 0.95);
     }
 
     .project-links a {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-decoration: none;
       color: #a5b4fc;
     }
@@ -461,15 +586,17 @@
 
     .contact-card {
       border-radius: var(--radius-xl);
-      padding: 1.2rem;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1.2rem 1.4rem;
+      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), transparent 55%),
+                  rgba(15, 23, 42, 0.97);
+      border: 1px solid rgba(148, 163, 184, 0.6);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       justify-content: space-between;
       font-size: 0.9rem;
+      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.9);
     }
 
     .contact-info span {
@@ -485,15 +612,32 @@
     .contact-links a {
       font-size: 0.85rem;
       text-decoration: none;
-      color: #a5b4fc;
+      color: #22d3ee;
       margin-left: 1rem;
+      position: relative;
+    }
+
+    .contact-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+      transition: width 0.2s ease;
+    }
+
+    .contact-links a:hover::after {
+      width: 100%;
     }
 
     footer {
-      margin-top: 2rem;
-      font-size: 0.75rem;
+      margin-top: 2.2rem;
+      font-size: 0.78rem;
       color: var(--text-soft);
       text-align: center;
+      opacity: 0.8;
     }
 
     /* RESPONSIVE */
@@ -526,6 +670,7 @@
         display: flex;
         gap: 0.75rem;
         flex-wrap: wrap;
+        margin-top: 0.3rem;
       }
 
       .projects-grid {
@@ -534,6 +679,7 @@
 
       .hero-3d-card {
         max-width: 100%;
+        transform: rotateX(8deg) rotateY(-6deg);
       }
 
       .contact-card {
@@ -562,11 +708,11 @@
       <div class="hero-text">
         <small>Desarrollador Web & Backend</small>
         <h1>
-          Hola, soy <span>Roni</span>.<br />
+          Hola, soy <span class="glitch" data-text="Roni">Roni</span>.<br />
           Construyo experiencias web modernas.
         </h1>
         <p>
-          Desarrollador en formación, apasionado por <strong> Docker y bases de datos</strong>.
+          Desarrollador en formación, apasionado por <strong>Docker y bases de datos</strong>.
           Me gusta crear soluciones limpias, bien estructuradas y pensadas para el usuario.
         </p>
 
@@ -589,21 +735,20 @@
         </div>
       </div>
 
-      <!-- Tarjeta 3D “preview” de un proyecto -->
+      <!-- Tarjeta 3D -->
       <div class="hero-3d">
         <div class="hero-3d-card">
           <div class="hero-3d-glow"></div>
           <div class="hero-3d-inner">
             <div class="hero-3d-chip">
               <span class="badge-dot"></span>
-              Proyecto destacado · Angular 
+              Proyecto destacado · Angular
             </div>
             <h3 class="hero-3d-title">Sistema de Inventario</h3>
             <p class="hero-3d-sub">
               Panel moderno con gráficos, tarjetas 3D y reportes automáticos.
             </p>
             <div class="hero-3d-mainimage">
-              <!-- Cambia esta imagen por una captura real de tu proyecto -->
               <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800"
                    alt="Preview 3D de proyecto" />
             </div>
@@ -640,10 +785,10 @@
           </p>
 
           <div class="about-tags">
-            <span class="tag">Backend · Laravel .django</span>
+            <span class="tag">Backend · Laravel · Django</span>
             <span class="tag">APIs REST</span>
             <span class="tag">MySQL / MariaDB</span>
-            <span class="tag">Docker</span>
+            <span class="tag">Docker · Docker Compose</span>
             <span class="tag">Git / GitHub</span>
           </div>
         </div>
@@ -680,7 +825,6 @@
         <!-- PROYECTO 1 -->
         <article class="project-card">
           <div class="project-image">
-            <!-- Cambia por captura real de tu proyecto -->
             <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800"
                  alt="Proyecto Punto de Venta" />
           </div>
@@ -770,7 +914,7 @@
     </section>
 
     <footer>
-      © <span id="year"></span> Tu Nombre. Construido con cariño usando HTML, CSS y un poco de 3D.
+      © <span id="year"></span> Roni Saavedra. Construido con HTML, CSS y un poco de glitch.
     </footer>
   </div>
 
