@@ -2,23 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Roni Saavedra · Web & Backend</title>
+  <title>Roni Saavedra · Cyber Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --bg: #020617;
-      --bg-soft: #050816;
-      --bg-card: #050816;
+      --bg-deep: #02010a;
       --accent: #38bdf8;
-      --accent-soft: #0ea5e9;
       --accent-2: #a855f7;
+      --accent-3: #22c55e;
       --text: #e5e7eb;
       --text-soft: #9ca3af;
       --border-soft: rgba(148, 163, 184, 0.35);
-      --radius-lg: 1.35rem;
-      --shadow-3d: 0 30px 80px rgba(0, 0, 0, 0.95);
+      --card-bg: rgba(6, 8, 20, 0.96);
+      --radius-lg: 1.4rem;
+      --shadow-3d: 0 32px 90px rgba(0, 0, 0, 0.98);
     }
 
     * {
@@ -33,10 +33,10 @@
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.22), transparent 55%),
-        radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.9), #020617);
+      background: radial-gradient(circle at 0% 0%, #0f172a 0, transparent 55%),
+                  radial-gradient(circle at 100% 100%, #1e1b4b 0, transparent 55%),
+                  radial-gradient(circle at 50% 0%, #0369a1 0, transparent 50%),
+                  var(--bg-deep);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.6;
@@ -44,16 +44,46 @@
       position: relative;
     }
 
-    /* ligero “vignette” para más profundidad */
+    /* Canvas de partículas */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+    }
+
+    /* Overlay de “código” / ruido */
+    body::before {
+      content: "0101011011001010110010100101011010";
+      position: fixed;
+      inset: 0;
+      font-family: "Space Grotesk", monospace;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      line-height: 1.7;
+      color: rgba(15, 23, 42, 0.7);
+      mix-blend-mode: soft-light;
+      opacity: 0.4;
+      pointer-events: none;
+      white-space: pre-wrap;
+      padding: 3rem;
+      animation: codeMove 40s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes codeMove {
+      0% { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-80px,-120px,0); }
+    }
+
     body::after {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 50% 0%, transparent 0, rgba(0,0,0,0.5) 70%),
-        radial-gradient(circle at 0% 100%, transparent 0, rgba(0,0,0,0.6) 65%),
-        radial-gradient(circle at 100% 100%, transparent 0, rgba(0,0,0,0.7) 65%);
+        radial-gradient(circle at 50% 0%, transparent 0, rgba(0,0,0,0.6) 70%),
+        radial-gradient(circle at 0% 100%, transparent 0, rgba(0,0,0,0.75) 70%),
+        radial-gradient(circle at 100% 100%, transparent 0, rgba(0,0,0,0.85) 70%);
       mix-blend-mode: multiply;
       z-index: -1;
     }
@@ -78,7 +108,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: linear-gradient(to bottom, rgba(2,6,23,0.9), rgba(2,6,23,0.6), transparent);
+      background: linear-gradient(to bottom, rgba(2,6,23,0.9), rgba(2,6,23,0.5), transparent);
     }
 
     .logo {
@@ -89,16 +119,16 @@
     }
 
     .logo-sphere {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 999px;
       background:
         radial-gradient(circle at 20% 20%, #e0f2fe, transparent 65%),
-        radial-gradient(circle at 80% 80%, #0ea5e9, transparent 70%),
+        radial-gradient(circle at 80% 80%, #22d3ee, transparent 70%),
         radial-gradient(circle at 0% 100%, #a855f7, transparent 70%);
       box-shadow:
-        0 0 20px rgba(56, 189, 248, 0.7),
-        0 0 30px rgba(15, 23, 42, 0.9);
+        0 0 22px rgba(56, 189, 248, 0.9),
+        0 0 36px rgba(88, 28, 135, 0.8);
       position: relative;
       overflow: hidden;
     }
@@ -146,6 +176,29 @@
       align-items: center;
       padding-top: 1.2rem;
       margin-bottom: 3.6rem;
+      position: relative;
+    }
+
+    /* UI vertical tipo HUD */
+    .hud-pill {
+      position: absolute;
+      left: -3.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.7);
+      border-left: 1px solid rgba(55,65,81,0.9);
+      padding-left: 0.7rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      display: none;
+    }
+
+    @media (min-width: 1180px) {
+      .hud-pill { display: block; }
     }
 
     .hero-left {
@@ -158,7 +211,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: #22c55e;
+      color: var(--accent-3);
       margin-bottom: 0.9rem;
     }
 
@@ -169,8 +222,43 @@
       margin-bottom: 0.9rem;
     }
 
-    .hero-title span {
+    .hero-title span.glitch {
+      position: relative;
       color: var(--accent);
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.75;
+      clip-path: inset(0 0 0 0);
+    }
+
+    .glitch::before {
+      color: #f97316;
+      animation: glitchSlice1 2.8s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      color: #22c55e;
+      animation: glitchSlice2 3s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitchSlice1 {
+      0% { clip-path: inset(0 0 82% 0); transform: translate(-1px,1px); }
+      50% { clip-path: inset(15% 0 40% 0); transform: translate(1px,-1px); }
+      100% { clip-path: inset(60% 0 0 0); transform: translate(-2px,2px); }
+    }
+
+    @keyframes glitchSlice2 {
+      0% { clip-path: inset(60% 0 0 0); transform: translate(1px,-1px); }
+      50% { clip-path: inset(10% 0 60% 0); transform: translate(-1px,1px); }
+      100% { clip-path: inset(0 0 80% 0); transform: translate(2px,-2px); }
     }
 
     .hero-sub {
@@ -196,7 +284,7 @@
       padding: 0.4rem 0.95rem;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.3), transparent 60%),
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 60%),
                   rgba(15, 23, 42, 0.96);
       font-size: 0.78rem;
       display: inline-flex;
@@ -241,18 +329,18 @@
 
     .btn-primary {
       background:
-        radial-gradient(circle at 0 0, #38bdf8, transparent 60%),
-        linear-gradient(120deg, #38bdf8, #a855f7);
+        radial-gradient(circle at 0 0, #22d3ee, transparent 60%),
+        linear-gradient(120deg, #22d3ee, #a855f7);
       color: white;
       box-shadow:
-        0 0 20px rgba(56, 189, 248, 0.7),
+        0 0 20px rgba(56, 189, 248, 0.9),
         var(--shadow-3d);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px) scale(1.03);
       box-shadow:
-        0 0 30px rgba(56, 189, 248, 0.9),
+        0 0 30px rgba(168, 85, 247, 0.9),
         0 32px 90px rgba(0, 0, 0, 0.98);
     }
 
@@ -269,7 +357,7 @@
       box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9);
     }
 
-    /* HERO RIGHT – CARD ESTILO LAPZ */
+    /* HERO RIGHT – PANEL CYBORG */
 
     .hero-right {
       perspective: 1400px;
@@ -281,26 +369,44 @@
     .hero-card {
       width: 100%;
       max-width: 480px;
-      border-radius: 1.9rem;
+      border-radius: 2rem;
       padding: 1.3rem;
       background:
-        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.3), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
-      border: 1px solid rgba(31, 41, 55, 1);
-      box-shadow: var(--shadow-3d);
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.35), transparent 65%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.3), transparent 65%),
+        rgba(6, 8, 20, 0.96);
+      border: 1px solid rgba(39, 39, 42, 1);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.98),
+        0 0 40px rgba(15, 23, 42, 0.95);
       transform-style: preserve-3d;
-      transform: rotateX(18deg) rotateY(-20deg);
+      transform: rotateX(20deg) rotateY(-22deg);
       position: relative;
       overflow: hidden;
       transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease;
     }
 
     .hero-card:hover {
-      transform: rotateX(12deg) rotateY(-12deg) translateY(-4px);
+      transform: rotateX(14deg) rotateY(-12deg) translateY(-4px);
       box-shadow:
-        0 34px 100px rgba(0, 0, 0, 0.98),
-        0 0 40px rgba(15, 23, 42, 0.9);
-      border-color: rgba(55, 65, 81, 1);
+        0 42px 110px rgba(0, 0, 0, 0.99),
+        0 0 50px rgba(22, 163, 230, 0.7);
+      border-color: rgba(59, 130, 246, 0.9);
+    }
+
+    .hero-tag-top {
+      position: absolute;
+      right: 1.3rem;
+      top: 1.1rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248, 250, 252, 0.85);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      background: rgba(15, 23, 42, 0.96);
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
     .hero-chip {
@@ -331,12 +437,12 @@
     }
 
     .hero-image-wrapper {
-      border-radius: 1.4rem;
+      border-radius: 1.6rem;
       overflow: hidden;
-      border: 1px solid rgba(31, 41, 55, 1);
+      border: 1px solid rgba(30, 64, 175, 0.9);
       margin-bottom: 1rem;
       position: relative;
-      transform: translateZ(45px);
+      transform: translateZ(55px);
     }
 
     .hero-image-wrapper img {
@@ -344,17 +450,17 @@
       height: 260px;
       object-fit: cover;
       display: block;
-      filter: saturate(1.05) contrast(1.05) brightness(0.96);
-      transform: scale(1.03);
+      filter: saturate(1.1) contrast(1.08);
+      transform: scale(1.05);
     }
 
     .hero-image-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 30% 0%, rgba(248, 250, 252, 0.18), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.7), transparent 60%);
-      mix-blend-mode: soft-light;
+        radial-gradient(circle at 20% 0%, rgba(248, 250, 252, 0.2), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.8), transparent 60%);
+      mix-blend-mode: screen;
       pointer-events: none;
     }
 
@@ -374,25 +480,11 @@
       font-size: 0.72rem;
     }
 
-    .hero-tag-top {
-      position: absolute;
-      right: 1.3rem;
-      top: 1.1rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(248, 250, 252, 0.8);
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.65);
-      background: rgba(15, 23, 42, 0.95);
-      font-family: "Space Grotesk", system-ui, sans-serif;
-    }
-
     /* SECCIONES GENERALES */
 
     section {
       margin-bottom: 3.4rem;
+      position: relative;
     }
 
     section h2 {
@@ -406,6 +498,19 @@
       color: var(--text-soft);
       margin-bottom: 1.6rem;
       max-width: 34rem;
+    }
+
+    /* SCROLL REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* SOBRE MÍ */
@@ -447,8 +552,8 @@
     .stat-card {
       padding: 0.9rem;
       border-radius: 1.2rem;
-      background: var(--bg-card);
-      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: var(--card-bg);
+      border: 1px solid rgba(30, 64, 175, 0.9);
       box-shadow: 0 22px 55px rgba(0, 0, 0, 0.95);
       font-size: 0.8rem;
     }
@@ -472,7 +577,7 @@
       position: relative;
       border-radius: var(--radius-lg);
       padding: 1rem;
-      background: #020617;
+      background: var(--card-bg);
       border: 1px solid rgba(31, 41, 55, 1);
       box-shadow: var(--shadow-3d);
       overflow: hidden;
@@ -482,12 +587,28 @@
       cursor: pointer;
     }
 
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        conic-gradient(from 180deg, rgba(56,189,248,0.25), rgba(168,85,247,0.25), transparent 40% 100%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
     .project-card:hover {
       transform: translateY(-10px) rotateX(6deg) rotateY(-6deg);
       box-shadow:
         0 32px 80px rgba(0, 0, 0, 0.98),
         0 0 30px rgba(15, 23, 42, 0.95);
-      border-color: rgba(55, 65, 81, 1);
+      border-color: rgba(37, 99, 235, 0.9);
     }
 
     .project-image {
@@ -495,6 +616,7 @@
       overflow: hidden;
       margin-bottom: 0.8rem;
       border: 1px solid rgba(31, 41, 55, 1);
+      position: relative;
     }
 
     .project-image img {
@@ -504,11 +626,11 @@
       display: block;
       transform: scale(1.03);
       transition: transform 0.3s ease;
-      filter: saturate(1.02) contrast(1.02) brightness(0.96);
+      filter: saturate(1.05) contrast(1.04) brightness(0.96);
     }
 
     .project-card:hover .project-image img {
-      transform: scale(1.08);
+      transform: scale(1.09);
     }
 
     .project-title {
@@ -530,6 +652,8 @@
       align-items: center;
       font-size: 0.78rem;
       color: var(--text-soft);
+      position: relative;
+      z-index: 1;
     }
 
     .project-tech {
@@ -557,7 +681,7 @@
     .contact-card {
       border-radius: var(--radius-lg);
       padding: 1.3rem 1.5rem;
-      background: #020617;
+      background: var(--card-bg);
       border: 1px solid rgba(31, 41, 55, 1);
       display: flex;
       flex-wrap: wrap;
@@ -609,19 +733,6 @@
       opacity: 0.8;
     }
 
-    /* SCROLL REVEAL */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* RESPONSIVE */
 
     @media (max-width: 1024px) {
@@ -633,7 +744,7 @@
       }
       .hero-card {
         max-width: 100%;
-        transform: rotateX(14deg) rotateY(-10deg);
+        transform: rotateX(16deg) rotateY(-12deg);
       }
     }
 
@@ -662,6 +773,8 @@
   </style>
 </head>
 <body>
+  <canvas id="bg-canvas"></canvas>
+
   <div class="wrapper">
     <header>
       <div class="logo">
@@ -677,10 +790,12 @@
 
     <!-- HERO -->
     <section class="hero">
+      <div class="hud-pill">CYBER / PORTFOLIO / RONI · 2025</div>
+
       <div class="hero-left reveal">
         <div class="hero-kicker">Ingeniero en Informática · Web & Backend</div>
         <h1 class="hero-title">
-          Hola, soy <span>Roni</span>.<br />
+          Hola, soy <span class="glitch" data-text="Roni">Roni</span>.<br />
           Construyo experiencias web modernas.
         </h1>
         <p class="hero-sub">
@@ -715,8 +830,8 @@
             Panel con reportes automáticos, escaneo QR y despliegue en Docker + VPS.
           </p>
           <div class="hero-image-wrapper">
-            <!-- Cambia esta imagen por una captura real de tu proyecto si quieres -->
-            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            <!-- Puedes cambiar por captura real de tu sistema -->
+            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600"
                  alt="Preview proyecto inventario" />
             <div class="hero-image-overlay"></div>
           </div>
@@ -794,9 +909,9 @@
 
       <div class="projects-grid">
         <!-- PROYECTO 1 -->
-        <article class="project-card tilt">
+        <article class="project-card">
           <div class="project-image">
-            <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1600"
                  alt="Proyecto Punto de Venta" />
           </div>
           <h3 class="project-title">Punto de Venta & Inventario</h3>
@@ -818,9 +933,9 @@
         </article>
 
         <!-- PROYECTO 2 -->
-        <article class="project-card tilt">
+        <article class="project-card">
           <div class="project-image">
-            <img src="https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            <img src="https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=1600"
                  alt="Sistema de inventario con QR" />
           </div>
           <h3 class="project-title">Sistema de Inventario Escolar</h3>
@@ -864,7 +979,7 @@
     </section>
 
     <footer>
-      © <span id="year"></span> Roni Saavedra. Construido con HTML, CSS y un poco de JS.
+      © <span id="year"></span> Roni Saavedra. Cyber portfolio construido con HTML, CSS y JS.
     </footer>
   </div>
 
@@ -896,27 +1011,65 @@
       const rotateY = ((x - rect.width / 2) / rect.width) * 10;
       const rotateX = -((y - rect.height / 2) / rect.height) * 10;
       heroCard.style.transform =
-        `rotateX(${18 + rotateX}deg) rotateY(${ -20 + rotateY}deg) translateY(-2px)`;
+        `rotateX(${20 + rotateX}deg) rotateY(${ -22 + rotateY}deg) translateY(-2px)`;
     });
     heroCard.addEventListener("pointerleave", () => {
-      heroCard.style.transform = "rotateX(18deg) rotateY(-20deg)";
+      heroCard.style.transform = "rotateX(20deg) rotateY(-22deg)";
     });
 
-    // Tilt más simple en cards de proyectos
-    document.querySelectorAll(".tilt").forEach((card) => {
-      card.addEventListener("pointermove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const rotateY = ((x - rect.width / 2) / rect.width) * 8;
-        const rotateX = -((y - rect.height / 2) / rect.height) * 8;
-        card.style.transform =
-          `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // Fondo de partículas en canvas
+    const canvas = document.getElementById("bg-canvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let width, height;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const count = Math.floor((width * height) / 18000);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.6 + 0.4,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          alpha: Math.random() * 0.5 + 0.2
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        grad.addColorStop(0, `rgba(56,189,248,${p.alpha})`);
+        grad.addColorStop(0.5, `rgba(168,85,247,${p.alpha * 0.7})`);
+        grad.addColorStop(1, "transparent");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+        ctx.fill();
       });
-      card.addEventListener("pointerleave", () => {
-        card.style.transform = "translateY(0) rotateX(0) rotateY(0)";
-      });
-    });
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    drawParticles();
   </script>
 </body>
 </html>
