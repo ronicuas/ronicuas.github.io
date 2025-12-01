@@ -2,23 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Portafolio - Roni Saavedra</title>
+  <title>Roni Saavedra · Dark Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #020617;
       --bg-soft: #020617;
-      --bg-card: rgba(15, 23, 42, 0.95);
+      --bg-card: rgba(10, 16, 32, 0.98);
       --accent: #22d3ee;
       --accent-2: #a855f7;
       --accent-3: #22c55e;
       --text: #e5e7eb;
       --text-soft: #9ca3af;
-      --radius-xl: 1.5rem;
-      --shadow-3d: 0 25px 60px rgba(0, 0, 0, 0.85);
-      --border-glass: rgba(148, 163, 184, 0.3);
+      --border-soft: rgba(148, 163, 184, 0.35);
+      --radius-lg: 1.4rem;
+      --shadow-3d: 0 28px 80px rgba(0, 0, 0, 0.95);
     }
 
     * {
@@ -28,11 +27,11 @@
     }
 
     body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background:
-        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.18), transparent 55%),
-        radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.12), transparent 55%),
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.22), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.26), transparent 55%),
+        radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.18), transparent 55%),
         var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -41,42 +40,56 @@
       position: relative;
     }
 
-    /* Grid / scanlines de fondo */
+    /* scanlines + grid */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)),
         repeating-linear-gradient(
           to right,
-          rgba(15, 23, 42, 0.4) 0,
-          rgba(15, 23, 42, 0.4) 1px,
+          rgba(15, 23, 42, 0.6) 0,
+          rgba(15, 23, 42, 0.6) 1px,
           transparent 1px,
           transparent 40px
         ),
         repeating-linear-gradient(
           to bottom,
-          rgba(15, 23, 42, 0.5) 0,
-          rgba(15, 23, 42, 0.5) 1px,
+          rgba(15, 23, 42, 0.55) 0,
+          rgba(15, 23, 42, 0.55) 1px,
           transparent 1px,
           transparent 40px
         );
-      opacity: 0.8;
+      mix-blend-mode: soft-light;
+      opacity: 0.9;
       pointer-events: none;
       z-index: -1;
-      animation: bg-drift 18s linear infinite;
+      animation: bg-drift 26s linear infinite;
     }
 
     @keyframes bg-drift {
       0% { transform: translate3d(0,0,0); }
-      100% { transform: translate3d(-40px,-40px,0); }
+      100% { transform: translate3d(-60px,-60px,0); }
     }
 
     .wrapper {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem 1.25rem 3rem;
+      padding: 1.6rem 1.4rem 4rem;
+    }
+
+    /* custom cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.19), transparent 70%);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s linear;
     }
 
     header {
@@ -84,13 +97,15 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2.4rem;
+      position: relative;
+      z-index: 2;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.9rem;
       font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
@@ -99,11 +114,11 @@
       height: 44px;
       border-radius: 999px;
       background:
-        radial-gradient(circle at 20% 20%, #e0f2fe, transparent 60%),
+        radial-gradient(circle at 20% 20%, #e0f2fe, transparent 65%),
         conic-gradient(from 210deg, #22d3ee, #a855f7, #22c55e, #22d3ee);
       box-shadow:
-        0 0 20px rgba(34, 211, 238, 0.9),
-        0 0 40px rgba(88, 28, 135, 0.7);
+        0 0 22px rgba(34, 211, 238, 0.8),
+        0 0 42px rgba(76, 29, 149, 0.7);
       position: relative;
       overflow: hidden;
     }
@@ -115,18 +130,17 @@
       border-radius: inherit;
       background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.9), transparent 65%);
       mix-blend-mode: screen;
-      opacity: 0.9;
     }
 
     .logo span {
       font-weight: 600;
-      letter-spacing: 0.12em;
-      font-size: 0.9rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      font-size: 0.85rem;
     }
 
     nav a {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       text-decoration: none;
       color: var(--text-soft);
       margin-left: 1.4rem;
@@ -151,33 +165,39 @@
       width: 100%;
     }
 
-    /* HERO */
+    /* HERO LAYOUT */
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 2.4rem;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.2fr);
+      gap: 2.6rem;
       align-items: center;
-      margin-bottom: 3.5rem;
+      margin-bottom: 4rem;
+      position: relative;
     }
 
-    .hero-text small {
-      text-transform: uppercase;
+    .hero-left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.78rem;
       letter-spacing: 0.22em;
-      font-size: 0.75rem;
+      text-transform: uppercase;
       color: #4ade80;
-      font-family: "Space Grotesk", system-ui, sans-serif;
+      margin-bottom: 0.8rem;
     }
 
-    .hero-text h1 {
+    .hero-title {
       font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      margin-top: 0.7rem;
-      margin-bottom: 0.9rem;
-      line-height: 1.1;
+      font-size: clamp(2.6rem, 4vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
     }
 
-    .hero-text h1 span.glitch {
+    .hero-title span.glitch {
       position: relative;
       display: inline-block;
       color: var(--accent);
@@ -197,13 +217,13 @@
     .glitch::before {
       color: #f97316;
       transform: translate3d(-1px, 1px, 0);
-      animation: glitch-1 2.5s infinite linear alternate-reverse;
+      animation: glitch-1 2.8s infinite linear alternate-reverse;
     }
 
     .glitch::after {
       color: #22c55e;
       transform: translate3d(1px, -1px, 0);
-      animation: glitch-2 2.5s infinite linear alternate-reverse;
+      animation: glitch-2 2.8s infinite linear alternate-reverse;
     }
 
     @keyframes glitch-1 {
@@ -211,20 +231,20 @@
       50% { clip-path: inset(20% 0 40% 0); }
       100% { clip-path: inset(60% 0 0 0); }
     }
-
     @keyframes glitch-2 {
       0% { clip-path: inset(60% 0 0 0); }
       50% { clip-path: inset(10% 0 60% 0); }
       100% { clip-path: inset(0 0 80% 0); }
     }
 
-    .hero-text p {
+    .hero-sub {
       color: var(--text-soft);
       font-size: 0.98rem;
       max-width: 36rem;
+      margin-bottom: 1.6rem;
     }
 
-    .hero-text p strong {
+    .hero-sub strong {
       color: #e5e7eb;
       font-weight: 600;
     }
@@ -233,15 +253,15 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin: 1.6rem 0 2rem;
+      margin-bottom: 2rem;
     }
 
     .badge {
-      padding: 0.38rem 1rem;
+      padding: 0.4rem 1rem;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.2), transparent 60%),
-                  rgba(15, 23, 42, 0.9);
+      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.2), transparent 55%),
+                  rgba(15, 23, 42, 0.94);
       font-size: 0.78rem;
       display: inline-flex;
       align-items: center;
@@ -265,7 +285,7 @@
 
     .btn {
       border-radius: 999px;
-      padding: 0.75rem 1.6rem;
+      padding: 0.78rem 1.7rem;
       border: 1px solid transparent;
       font-size: 0.9rem;
       cursor: pointer;
@@ -285,124 +305,142 @@
     }
 
     .btn-primary {
-      background: radial-gradient(circle at 0 0, #22d3ee, transparent 60%),
-                  linear-gradient(120deg, #22d3ee, #a855f7);
+      background:
+        radial-gradient(circle at 0 0, #22d3ee, transparent 60%),
+        linear-gradient(120deg, #22d3ee, #a855f7);
       color: white;
       box-shadow:
-        0 0 18px rgba(34, 211, 238, 0.6),
+        0 0 21px rgba(34, 211, 238, 0.6),
         var(--shadow-3d);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px) scale(1.02);
+      transform: translateY(-2px) scale(1.03);
       box-shadow:
-        0 0 28px rgba(168, 85, 247, 0.8),
-        0 30px 70px rgba(0, 0, 0, 0.9);
+        0 0 34px rgba(168, 85, 247, 0.9),
+        0 30px 90px rgba(0, 0, 0, 0.95);
     }
 
     .btn-ghost {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.95);
       color: var(--text);
-      border-color: rgba(148, 163, 184, 0.5);
+      border-color: rgba(148, 163, 184, 0.6);
     }
 
     .btn-ghost:hover {
       border-color: var(--accent);
-      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.2), rgba(15, 23, 42, 0.98));
+      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), rgba(15, 23, 42, 0.98));
       transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
     }
 
-    /* Tarjeta 3D */
+    /* HERO RIGHT SIDE */
 
-    .hero-3d {
-      perspective: 1200px;
+    .hero-right {
+      perspective: 1400px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
-    .hero-3d-card {
+    .hero-panel {
       width: 100%;
-      max-width: 380px;
-      border-radius: 1.7rem;
-      padding: 1.2rem;
+      max-width: 460px;
+      border-radius: 2rem;
+      padding: 1.4rem;
       background:
         radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.3), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.25), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.35), transparent 55%),
         rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: var(--shadow-3d);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.95),
+        0 0 32px rgba(34, 211, 238, 0.35);
       transform-style: preserve-3d;
-      transform: rotateX(14deg) rotateY(-18deg);
+      transform: rotateX(18deg) rotateY(-20deg);
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     }
 
-    .hero-3d-card:hover {
-      transform: rotateX(10deg) rotateY(-10deg) translateY(-4px);
+    .hero-panel:hover {
+      transform: rotateX(12deg) rotateY(-10deg) translateY(-4px);
       box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.95),
-        0 0 30px rgba(34, 211, 238, 0.45);
+        0 34px 100px rgba(0, 0, 0, 0.98),
+        0 0 42px rgba(34, 211, 238, 0.55);
     }
 
-    .hero-3d-glow {
+    .hero-panel::before {
+      content: "VISION";
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 0, rgba(244, 244, 245, 0.2), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(129, 140, 248, 0.35), transparent 55%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .hero-3d-inner {
-      position: relative;
-      transform-style: preserve-3d;
-    }
-
-    .hero-3d-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.72rem;
-      padding: 0.35rem 0.8rem;
+      right: 1.4rem;
+      top: 1.2rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248, 250, 252, 0.7);
+      padding: 0.25rem 0.6rem;
       border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
       background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      margin-bottom: 1rem;
       font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
-    .hero-3d-title {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-      font-weight: 600;
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.74rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      margin-bottom: 1.1rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
-    .hero-3d-sub {
-      font-size: 0.8rem;
+    .hero-panel-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+    }
+
+    .hero-panel-sub {
+      font-size: 0.82rem;
       color: var(--text-soft);
       margin-bottom: 0.9rem;
     }
 
-    .hero-3d-mainimage {
-      border-radius: 1.2rem;
-      width: 100%;
+    .hero-image-wrapper {
+      border-radius: 1.5rem;
       overflow: hidden;
-      transform: translateZ(40px);
+      border: 1px solid rgba(148, 163, 184, 0.55);
       margin-bottom: 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      transform: translateZ(50px);
+      position: relative;
     }
 
-    .hero-3d-mainimage img {
-      width: 100%;
+    .hero-image-wrapper img {
       display: block;
+      width: 100%;
+      height: 270px;
       object-fit: cover;
+      filter: saturate(1.05) contrast(1.08);
       transform: scale(1.02);
     }
 
-    .hero-3d-footer {
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.35), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.4), transparent 60%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-panel-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -410,39 +448,41 @@
       color: var(--text-soft);
     }
 
-    .hero-3d-pill {
+    .hero-panel-pill {
       padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.7);
       font-size: 0.72rem;
     }
 
-    /* SECCIONES GENERALES */
+    /* SECTION GENERIC */
 
     section {
-      margin-bottom: 3.2rem;
+      margin-bottom: 3.4rem;
+      position: relative;
+      z-index: 1;
     }
 
     section h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
       font-size: 1.4rem;
       margin-bottom: 0.6rem;
-      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
-    section p.section-subtitle {
+    .section-subtitle {
       font-size: 0.9rem;
       color: var(--text-soft);
       margin-bottom: 1.6rem;
       max-width: 36rem;
     }
 
-    /* SOBRE MÍ */
+    /* ABOUT */
 
-    .about {
+    .about-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
-      gap: 1.9rem;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.1fr);
+      gap: 2rem;
       align-items: start;
     }
 
@@ -461,10 +501,10 @@
 
     .tag {
       font-size: 0.75rem;
-      padding: 0.35rem 0.8rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
     }
 
     .about-stats {
@@ -474,38 +514,40 @@
     }
 
     .stat-card {
-      padding: 0.85rem;
-      border-radius: 1.1rem;
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(4, 7, 20, 0.96));
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      box-shadow: 0 18px 40px rgba(2, 6, 23, 0.95);
+      padding: 0.9rem;
+      border-radius: 1.2rem;
+      background:
+        radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.2), transparent 55%),
+        rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      box-shadow: 0 22px 55px rgba(2, 6, 23, 0.98);
       font-size: 0.8rem;
     }
 
     .stat-card strong {
       display: block;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       margin-bottom: 0.15rem;
       font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
-    /* PROYECTOS */
+    /* PROJECTS */
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.6rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.7rem;
     }
 
     .project-card {
       position: relative;
-      border-radius: var(--radius-xl);
+      border-radius: var(--radius-lg);
       padding: 1rem;
       background:
-        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.25), transparent 55%),
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.32), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.32), transparent 55%),
         rgba(15, 23, 42, 0.98);
-      border: 1px solid var(--border-glass);
+      border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-3d);
       overflow: hidden;
       transform-style: preserve-3d;
@@ -517,21 +559,21 @@
     .project-card:hover {
       transform: translateY(-10px) rotateX(6deg) rotateY(-6deg);
       box-shadow:
-        0 30px 70px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(34, 211, 238, 0.4);
+        0 32px 80px rgba(0, 0, 0, 0.98),
+        0 0 32px rgba(34, 211, 238, 0.4);
       border-color: rgba(129, 140, 248, 0.9);
     }
 
     .project-image {
       border-radius: 1.1rem;
       overflow: hidden;
-      margin-bottom: 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.45);
+      margin-bottom: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.55);
     }
 
     .project-image img {
       width: 100%;
-      height: 180px;
+      height: 190px;
       object-fit: cover;
       display: block;
       transform: scale(1.03);
@@ -539,26 +581,27 @@
     }
 
     .project-card:hover .project-image img {
-      transform: scale(1.07);
+      transform: scale(1.08);
     }
 
     .project-title {
-      font-size: 0.98rem;
+      font-size: 1rem;
       margin-bottom: 0.25rem;
       font-weight: 600;
+      font-family: "Space Grotesk", system-ui, sans-serif;
     }
 
     .project-desc {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text-soft);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.75rem;
     }
 
     .project-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--text-soft);
     }
 
@@ -569,11 +612,11 @@
     }
 
     .project-pill {
-      padding: 0.2rem 0.65rem;
+      padding: 0.2rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.6);
       font-size: 0.7rem;
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.98);
     }
 
     .project-links a {
@@ -582,21 +625,22 @@
       color: #a5b4fc;
     }
 
-    /* CONTACTO */
+    /* CONTACT */
 
     .contact-card {
-      border-radius: var(--radius-xl);
-      padding: 1.2rem 1.4rem;
-      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), transparent 55%),
-                  rgba(15, 23, 42, 0.97);
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.5rem;
+      background:
+        radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.25), transparent 55%),
+        rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.65);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       justify-content: space-between;
       font-size: 0.9rem;
-      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 24px 65px rgba(0, 0, 0, 0.98);
     }
 
     .contact-info span {
@@ -606,14 +650,14 @@
     }
 
     .contact-info strong {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
     }
 
     .contact-links a {
       font-size: 0.85rem;
       text-decoration: none;
       color: #22d3ee;
-      margin-left: 1rem;
+      margin-left: 1.1rem;
       position: relative;
     }
 
@@ -633,63 +677,69 @@
     }
 
     footer {
-      margin-top: 2.2rem;
+      margin-top: 2.4rem;
       font-size: 0.78rem;
       color: var(--text-soft);
       text-align: center;
       opacity: 0.8;
     }
 
+    /* SCROLL REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* RESPONSIVE */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
       }
-
-      .hero-3d {
+      .hero-right {
         order: -1;
       }
-
-      .about {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .projects-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .hero-panel {
+        max-width: 100%;
+        transform: rotateX(12deg) rotateY(-8deg);
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: flex-start;
       }
-
       nav {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        margin-top: 0.3rem;
+        margin-top: 0.4rem;
       }
-
+      .about-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
       .projects-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-
-      .hero-3d-card {
-        max-width: 100%;
-        transform: rotateX(8deg) rotateY(-6deg);
-      }
-
       .contact-card {
         flex-direction: column;
         align-items: flex-start;
       }
+      .hero-title {
+        font-size: 2.2rem;
+      }
     }
+
   </style>
 </head>
 <body>
+  <div class="cursor-glow"></div>
+
   <div class="wrapper">
     <header>
       <div class="logo">
@@ -705,13 +755,13 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-text">
-        <small>Ingeniero en informatica Desarrollador Web & Backend</small>
-        <h1>
+      <div class="hero-left reveal">
+        <div class="hero-kicker">Ingeniero en Informática · Web & Backend</div>
+        <h1 class="hero-title">
           Hola, soy <span class="glitch" data-text="Roni">Roni</span>.<br />
           Construyo experiencias web modernas.
         </h1>
-        <p>
+        <p class="hero-sub">
           Desarrollador en formación, apasionado por <strong>Docker y bases de datos</strong>.
           Me gusta crear soluciones limpias, bien estructuradas y pensadas para el usuario.
         </p>
@@ -721,43 +771,39 @@
             <span class="badge-dot"></span>
             Disponible para proyectos
           </div>
-          <div class="badge">React · Angular · MySQL· Django</div>
+          <div class="badge">React · Angular · MySQL · Django</div>
           <div class="badge">Docker · Git · Linux</div>
         </div>
 
         <div class="hero-actions">
-          <a href="#proyectos" class="btn btn-primary">
-            Ver proyectos
-          </a>
-          <a href="#" class="btn btn-ghost">
-            Descargar CV (PDF)
-          </a>
+          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+          <a href="#" class="btn btn-ghost">Descargar CV (PDF)</a>
         </div>
       </div>
 
-      <!-- Tarjeta 3D -->
-      <div class="hero-3d">
-        <div class="hero-3d-card">
-          <div class="hero-3d-glow"></div>
-          <div class="hero-3d-inner">
-            <div class="hero-3d-chip">
-              <span class="badge-dot"></span>
-              Proyecto destacado · Angular
+      <div class="hero-right reveal">
+        <div class="hero-panel" id="heroPanel">
+          <div class="hero-chip">
+            <span class="badge-dot"></span>
+            Proyecto destacado · Inventario
+          </div>
+          <h3 class="hero-panel-title">Sistema de Inventario</h3>
+          <p class="hero-panel-sub">
+            Panel con reportes automáticos, escaneo QR y despliegue en Docker + VPS.
+          </p>
+          <div class="hero-image-wrapper">
+            <!-- Puedes cambiar esta imagen por captura real -->
+            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                 alt="Preview proyecto inventario" />
+            <div class="hero-image-overlay"></div>
+          </div>
+          <div class="hero-panel-footer">
+            <div>
+              Último despliegue<br />
+              <strong>Docker · VPS</strong>
             </div>
-            <h3 class="hero-3d-title">Sistema de Inventario</h3>
-            <p class="hero-3d-sub">
-              Panel moderno y reportes automáticos.
-            </p>
-            <div class="hero-3d-mainimage">
-              <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800"
-                   alt="Preview 3D de proyecto" />
-            </div>
-            <div class="hero-3d-footer">
-              <div>
-                Último despliegue<br />
-                <strong>Docker + VPS</strong>
-              </div>
-              <div class="hero-3d-pill">Angular · MariaDB · Django</div>
+            <div class="hero-panel-pill">
+              React · Django · MariaDB
             </div>
           </div>
         </div>
@@ -765,27 +811,29 @@
     </section>
 
     <!-- SOBRE MÍ -->
-    <section id="sobre-mi">
+    <section id="sobre-mi" class="reveal">
       <h2>Sobre mí</h2>
-      <p class="section-subtitle">Un poco de contexto de quién soy y qué puedo aportar al equipo.</p>
+      <p class="section-subtitle">
+        Un poco de contexto de quién soy y qué puedo aportar a tu equipo.
+      </p>
 
-      <div class="about">
+      <div class="about-layout">
         <div class="about-text">
           <p>
             Soy <strong>Roni</strong>, estudiante de <strong>Ingeniería en Informática</strong> y desarrollador
             backend y frontend enfocado en construir aplicaciones web mantenibles, seguras y bien documentadas.
           </p>
           <p>
-            Me siento cómodo trabajando con <strong>· Angular · MariaDB · Djangol, MySQL, Docker </strong>. También tengo
-            experiencia haciendo documentación técnica, diagramas y pruebas automatizadas.
+            Me siento cómodo trabajando con <strong>Angular, React, Django, MariaDB, MySQL y Docker</strong>.
+            También tengo experiencia haciendo documentación técnica, diagramas y pruebas automatizadas.
           </p>
           <p>
             Busco oportunidades para seguir creciendo en proyectos reales, aportando tanto en
-            <strong>backend</strong> como en integración con el <strong>frontend</strong>.
+            <strong>backend</strong> como en la integración con el <strong>frontend</strong>.
           </p>
 
           <div class="about-tags">
-            <span class="tag">Backend · Laravel · Django</span>
+            <span class="tag">Backend · Django · Laravel</span>
             <span class="tag">APIs REST</span>
             <span class="tag">MySQL / MariaDB</span>
             <span class="tag">Docker · Docker Compose</span>
@@ -804,7 +852,7 @@
           </div>
           <div class="stat-card">
             <strong>Stack</strong>
-            <span>PHP · Laravel · Python · JS.</span>
+            <span>Angular · React · Django · Python · JS.</span>
           </div>
           <div class="stat-card">
             <strong>Focus</strong>
@@ -815,22 +863,22 @@
     </section>
 
     <!-- PROYECTOS -->
-    <section id="proyectos">
+    <section id="proyectos" class="reveal">
       <h2>Proyectos / Fullstack</h2>
       <p class="section-subtitle">
-        Selección de proyectos que muestran mi experiencia con  bases de datos, Docker y frontends modernos.
+        Selección de proyectos donde combino frontend moderno, backend sólido y despliegues con Docker.
       </p>
 
       <div class="projects-grid">
         <!-- PROYECTO 1 -->
-        <article class="project-card">
+        <article class="project-card tilt">
           <div class="project-image">
-            <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800"
+            <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1200"
                  alt="Proyecto Punto de Venta" />
           </div>
           <h3 class="project-title">Punto de Venta & Inventario</h3>
           <p class="project-desc">
-            Sistema de venta con control de inventario, reportes descargables panel con tarjetas y alertas de cuidado.
+            Sistema de venta con control de inventario, reportes descargables y alertas de cuidado para productos.
           </p>
           <div class="project-meta">
             <div class="project-tech">
@@ -845,15 +893,16 @@
             </div>
           </div>
         </article>
+
         <!-- PROYECTO 2 -->
-        <article class="project-card">
+        <article class="project-card tilt">
           <div class="project-image">
-            <img src="https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=800"
-                 alt="Dashboard Analítico" />
+            <img src="https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                 alt="Sistema de inventario con QR" />
           </div>
-          <h3 class="project-title">Sistema de inventario</h3>
+          <h3 class="project-title">Sistema de Inventario Escolar</h3>
           <p class="project-desc">
-           Escaneo de equipos con QR, generacionde informes personalizados.
+            Escaneo de equipos con QR, panel de estado y generación de informes personalizados para activos TI.
           </p>
           <div class="project-meta">
             <div class="project-tech">
@@ -872,10 +921,10 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto">
+    <section id="contacto" class="reveal">
       <h2>Contacto</h2>
       <p class="section-subtitle">
-        ¿Te interesa mi perfil o quieres que trabajemos en un proyecto? Aquí te dejo mis datos.
+        ¿Te interesa mi perfil o quieres que trabajemos en un proyecto? Hablemos.
       </p>
 
       <div class="contact-card">
@@ -892,13 +941,58 @@
     </section>
 
     <footer>
-      © <span id="year"></span> Roni Saavedra. Construido con HTML, CSS y un poco de glitch.
+      © <span id="year"></span> Roni Saavedra. Construido con HTML, CSS, JS y un poco de glitch.
     </footer>
   </div>
 
   <script>
     // Año automático
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Cursor glow
+    const glow = document.querySelector(".cursor-glow");
+    window.addEventListener("pointermove", (e) => {
+      glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // Simple tilt effect for project cards
+    const tiltCards = document.querySelectorAll(".tilt");
+    tiltCards.forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateY = ((x - rect.width / 2) / rect.width) * 10;
+        const rotateX = -((y - rect.height / 2) / rect.height) * 10;
+        card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.transform = "translateY(0) rotateX(0) rotateY(0)";
+      });
+    });
+
+    // Parallax ligero para panel del hero
+    const heroPanel = document.getElementById("heroPanel");
+    window.addEventListener("scroll", () => {
+      const offset = window.scrollY * 0.05;
+      heroPanel.style.transform =
+        `rotateX(18deg) rotateY(-20deg) translateY(${offset}px)`;
+    });
   </script>
 </body>
 </html>
